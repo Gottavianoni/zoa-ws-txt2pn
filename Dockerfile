@@ -1,14 +1,20 @@
 FROM ubuntu:latest
 
 RUN apt-get update -y
+RUN apt-get install -y locales
+RUN apt-get install -y python3-pip python-dev build-essential
 
-RUN apt-get install -y python-pip python-dev build-essential
+RUN locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+ENV PYTHONIOENCODING=UTF-8
 
 COPY . /app
 WORKDIR /app
 
-RUN pip install -r requirements.txt
+RUN pip3 install -r requirements.txt
 
 EXPOSE 5002
 
-CMD ["python", "app.py"]
+CMD ["python3", "app.py"]
