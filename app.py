@@ -9,14 +9,13 @@ import os
 import subprocess
 import re
 import shutil
-import pyhdb
 import sys
 
 try : 
 	reload(sys)  
 	sys.setdefaultencoding('utf8')  
 except :
-	"OK"
+	pass
 	
 PNS = 'data/pns.txt'
 
@@ -36,8 +35,6 @@ def contact():
         (nope, yup) = ([], [])
         for b in text:
             if b in pns:
-                nope.append(b)
-            else:
                 yup.append(b)
         (pn, c) = np.unique(yup, return_counts=True)
         res = {}
